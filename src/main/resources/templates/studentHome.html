@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th ="http//www.thymeleaf.org">
+<head>
+	<!-- we didnt style it yet! -->
+	<!-- <link href ="@{/CSS/style.css}" rel ="stylesheet" type ="text/css"/> -->
+</head>
+<body>
+	<h2>User Information</h2>
+	<table cellpadding = "2" cellspacing = "2">
+		<tr>
+			<th>Name: </th>
+			<td><span th:text ="${student.name}" ></span></td>
+		</tr>
+		<tr>
+			<th>Username: </th>
+			<td><span th:text ="${student.username}" ></span></td>
+		</tr>
+		<tr>
+			<th>Gender: </th>
+			<td><span th:text ="${student.gender}" ></span></td>
+		</tr>
+		<tr>
+			<th>Email: </th>
+			<td><span th:text ="${student.email}" ></span></td>
+		</tr>
+		<tr>
+			<th>Password: </th>
+			<td><span th:text ="${student.password}" ></span></td>
+		</tr>		
+		<tr>
+			<th>Photo: </th>
+			<td>
+				<img th:src ="@{'/images/'+${student.pic}}" />
+			</td>
+		</tr>
+	</table>
+</body>
+</html>
+
