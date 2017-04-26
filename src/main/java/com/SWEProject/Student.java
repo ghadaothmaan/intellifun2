@@ -21,7 +21,7 @@ public class Student {
 		this.gender = "";
 		this.email = "";
 		this.password = "";
-		this.pic = "default-user.jpg"; // msln?
+		this.pic = "default-user.png"; // msln?
 		this.score = 0;
 	}
 	
