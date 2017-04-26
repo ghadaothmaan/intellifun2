@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http//www.thymeleaf.org">
+<body>
+
+	<form action ="#" th:action ="@{/newQuestion}" th:object ="${question}" method ="post">
+
+		<p>Question: <input type ="text" th:field ="*{question}" placeholder = "Username" required = "required"/></p>
+
+<!-- 		<p>Answers: <input type ="text" th:field ="*{password}" placeholder = "Password" required ="required"/></p>
+ -->		
+		<p>Correct Answer Index: <input type = "text" th:field = "*{correctIndex}" required = "required"/></p>
+		
+		<button th:action="@{/newQuestion}">next</button>
+		
+		<input type ="submit" />
+	</form>
+	
+</body>
+</html>

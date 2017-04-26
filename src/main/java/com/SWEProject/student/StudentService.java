@@ -8,6 +8,8 @@ import com.SWEProject.Student;
 
 public class StudentService {
 	
+	private Student loggedin;
+	
 	private List<Student> students = new ArrayList<>(Arrays.asList (
 			 new Student("Hinata Shouyou", "mini-spiderman", "male", "littlegiant@gmail.com", "123", "h.jpeg", 1),
 			 new Student("Kageyama Tobio", "king", "male", "illsurpassoikawa@gmail.com", "123", "k.jpg", 2),
@@ -21,24 +23,27 @@ public class StudentService {
 
 	public void addStudent(Student s) {
 		students.add(s);
+		loggedin = s;
 	}	
 	
 	public Student getStudent(String username) {
-		return students.stream().filter(s -> s.getUsername().equals(username)).findFirst().get();
-	}
-	
-	// that's redundant now
-	public Student findStudent(String username) {
 		for (int i = 0; i < students.size(); i++) {
 			if (students.get(i).getUsername().equals(username)) {
+				loggedin = students.get(i);
 				return students.get(i); 
 			}
 		}
 		return null;
 	}
 	
+	// that's redundant now
+	public Student findStudent(String username) {
+		return students.stream().filter(s -> s.getUsername().equals(username)).findFirst().get();
+	}
+	
+	public Student getLoggedin() {
+		return loggedin;
+	}
+		
+		
 }
-
-
-
-

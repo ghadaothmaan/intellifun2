@@ -19,11 +19,23 @@ public class TeacherService {
 		return teachers; 
 	}
 	
-	public Teacher getTeacher(String username) {
-		return teachers.stream().filter(t -> t.getUsername().equals(username)).findFirst().get();
-	}
-	
 	public void addTeacher(Teacher t) {
 		teachers.add(t);
 	}
+	
+	// thats redundant now
+	public Teacher findTeacher(String username) {
+		return teachers.stream().filter(t -> t.getUsername().equals(username)).findFirst().get();
+	}
+	
+	public Teacher getTeacher(String username) {
+		for (int i = 0; i < teachers.size(); i++) {
+			if (teachers.get(i).getUsername().equals(username)) {
+				return teachers.get(i); 
+			}
+		}
+		return null;
+	}
+	
+	
 }

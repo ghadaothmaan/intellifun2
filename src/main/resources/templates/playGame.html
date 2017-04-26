@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http//www.thymeleaf.org">
+<body>
+
+	<form action ="#" th:action ="@{/playGame}" th:object ="${game}" method ="post">
+			
+		<p>Name: <span th:text ="${game.name}" ></span></p>
+		
+		<p>Question 1: <span th:text ="${game.questions[0]}" ></span></p>
+				
+		<p>Answer 1: <input type ="text" th:field ="*{game.answers[0]}" required = "required"/></p>
+		
+		<p>Question 2: <span th:text ="${game.questions[1]}" ></span></p>
+		
+		<p>Answer 2: <input type ="text" th:field ="*{game.answers[1]}" required = "required"/></p>
+				
+		<input type ="submit" />
+	</form> 
+	
+</body>
+</html>

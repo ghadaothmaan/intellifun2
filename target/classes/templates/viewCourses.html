@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th ="http//www.thymeleaf.org">
+<head>
+	<!-- we didnt style it yet! -->
+	<!-- <link href ="@{/CSS/style.css}" rel ="stylesheet" type ="text/css"/> -->
+</head>
+<body>
+	
+	<h2>Courses</h2>
+	<p>choose a course, it should show course info including a list of games,
+	   then choose a game to play, rate or comment</p>
+	
+    <!-- <p th:each="course : ${courses}" th:text="${course.name}"></p> -->
+ 	
+	<div th:each="course : ${courses}" th:object="${courses}">
+    	<form th:action="@{'/course/' + ${course.id}}">
+    	<button th:text="${course.name}" type="submit"></button>
+    	</form>
+	</div>
+	
+	<p><a href="createCourseForm"><button>create course</button></a></p>
+	
+	
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th ="http//www.thymeleaf.org">
+<head>
+	<!-- we didnt style it yet! -->
+	<!-- <link href ="@{/CSS/style.css}" rel ="stylesheet" type ="text/css"/> -->
+</head>
+<body>
+	<h2>Course Information</h2>
+	<table>
+		<tr>
+			<th>Name: </th>
+			<td><span th:text ="${course.name}" ></span></td>
+		</tr>
+		<tr>
+			<th>Description: </th>
+			<td><span th:text ="${course.description}" ></span></td>
+		</tr>		
+	</table>
+	
+	<div th:each="game : ${games}" th:object="${course.games}">
+    	<form th:action="@{/}">
+        	<button th:text="${game.name}" type="submit"></button>
+    	</form>
+	</div>
+	
+	
+	<p><a href="../createGameForm"><button>create game</button></a></p>
+	
+</body>
+</html>
+

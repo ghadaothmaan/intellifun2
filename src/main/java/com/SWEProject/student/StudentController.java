@@ -1,6 +1,5 @@
 package com.SWEProject.student;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -15,8 +14,7 @@ import com.SWEProject.Student;
 @RequestMapping("/")
 public class StudentController {
 	
-	//@Autowired
-	Student student = new Student();
+	// make autowired freakig work
 	
 	// signup stuff
 	@RequestMapping(value = "studentForm", method = RequestMethod.GET)
@@ -28,20 +26,24 @@ public class StudentController {
 	
 	@RequestMapping(value = "studentForm", method = RequestMethod.POST)
 	public String showStudentHome (@ModelAttribute(value = "student") Student s) {		
-		student = new Student(s.getName(), s.getUsername(), s.getGender(), s.getEmail(),
-							  s.getPassword(), s.getPic(), 0);
+		Student student = new Student(s.getName(), s.getUsername(), s.getGender(),
+									s.getEmail(), s.getPassword(), s.getPic(), 0);
 		
 		StudentService studentService = new StudentService();
 		studentService.addStudent(student); // adding signed up user to our awesome static database
 		
-		return "/studentHome";
+		return "/studentProfileSignup";
 	}
 	
-	@RequestMapping( value = "studentHome/{username}" , method = RequestMethod.GET)
-	public String studentHome (@PathVariable String username, ModelMap modelMap ) {		
+	@RequestMapping(value = "studentHome", method = RequestMethod.GET)
+	public String showStudentHomeee (@ModelAttribute(value = "student") Student s, Model model) {		
+		// logged in user
 		StudentService studentService = new StudentService();
-		student = studentService.getStudent(username);
-		modelMap.put("student", student);
+		//Student student = new Student();
+		s = studentService.getLoggedin();
+		model.addAttribute("student", s);
+		System.out.println(s.getUsername());
+		
 		return "/studentHome";
 	}
 	
@@ -50,25 +52,45 @@ public class StudentController {
 	public String login (Model model) {
 		Student student = new Student();
 		model.addAttribute("student", student);
+		
 		return "/studentLogin";
 	}
 	
-	// redirect html page
-	// redirect:/url/{username} model.put 
-	
 	@RequestMapping(value = "studentLogin", method = RequestMethod.POST)
 	public String showStudentHomee (@ModelAttribute(value = "student") Student s) {
-		
 		StudentService studentService = new StudentService();
-		student = studentService.getStudent(s.getUsername());
+		Student student = studentService.getStudent(s.getUsername());
 		
 		if (student != null) {
-			if (student.getPassword().equals(student.getPassword())) {
-				return "redirect:/studentHome/" + student.getUsername() + ".html";
+			if (student.getPassword().equals(s.getPassword())) {
+				//return "redirect:/studentHome/" + student.getUsername();
+				return "/studentHome";
 			}
 		}
-		return "/error";
+		return "/myerror";
 	}
+	
+//	@RequestMapping(value = "studentHome/{username}" , method = RequestMethod.GET)
+//	public String studentHome (@PathVariable String username, ModelMap modelMap ) {		
+//		StudentService studentService = new StudentService();
+//		Student student = studentService.getStudent(username);
+//		//student = studentService.getLoggedin();
+//		modelMap.put("student", student);
+//		
+//		return "/studentHome";
+//	}
+
+	
+	@RequestMapping(value = "studentProfile/{username}" , method = RequestMethod.GET)
+	public String studentProfilee (@PathVariable String username, ModelMap modelMap ) {		
+		StudentService studentService = new StudentService();
+		Student student = studentService.getStudent(username);
+		modelMap.put("student", student);
+		
+		return "/studentProfile";
+	}
+	
+	
 	
 }
 

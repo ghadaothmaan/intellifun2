@@ -5,13 +5,10 @@
 	<!-- <link href ="@{/CSS/style.css}" rel ="stylesheet" type ="text/css"/> -->
 </head>
 <body>
-	<h2>home</h2>
-		 
-	<p><a th:href="@{'../studentProfile/' + ${student.username}}"><button>view profile</button></a></p>
+	<h3>Registration successful!</h3>
 		
-	<p><a href="../viewCourses"><button>view courses</button></a></p>
-	
-	
+	<p><a th:href="@{'studentHome/'}"><button>home</button></a></p>
+ 	 		
 </body>
 </html>
 

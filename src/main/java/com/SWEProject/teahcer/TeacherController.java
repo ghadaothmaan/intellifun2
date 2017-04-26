@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -12,7 +13,6 @@ import com.SWEProject.Teacher;
 @Controller
 @RequestMapping("/")
 public class TeacherController {
-	Teacher teacher = new Teacher();
 	
 	// signup stuff
 	@RequestMapping(value = "teacherForm", method = RequestMethod.GET)
@@ -24,7 +24,7 @@ public class TeacherController {
 		
 	@RequestMapping(value = "teacherForm", method = RequestMethod.POST)
 	public String showTeacherHome (@ModelAttribute(value = "teacher") Teacher t) {		
-		teacher = new Teacher(t.getName(), t.getUsername(), t.getGender(), t.getEmail(),
+		Teacher teacher = new Teacher(t.getName(), t.getUsername(), t.getGender(), t.getEmail(),
 							  t.getPassword(), t.getPic(), 0);
 			
 		TeacherService teacherService = new TeacherService();
@@ -33,8 +33,11 @@ public class TeacherController {
 		return "/teacherHome";
 	}
 		
-	@RequestMapping(value = "teacherHome" , method = RequestMethod.GET)
-	public String teacherHome (ModelMap modelMap ) {
+	@RequestMapping(value = "teacherHome/{username}" , method = RequestMethod.GET)
+	public String teacherHome (@PathVariable String username, ModelMap modelMap) {
+		TeacherService teacherService = new TeacherService();
+		Teacher teacher = new Teacher();
+		teacher = teacherService.getTeacher(username);
 		modelMap.put("teacher", teacher);
 		return "/teacherHome";
 	}
@@ -48,19 +51,17 @@ public class TeacherController {
 	}
 		
 	@RequestMapping(value = "teacherLogin", method = RequestMethod.POST)
-	public String showStudentHomee (@ModelAttribute(value = "teacher") Teacher t) {
+	public String showTeacherHomee (@ModelAttribute(value = "teacher") Teacher t) {
 			
-		// since en bndakhal 2 inputs bs eli byzhar f student home hwa eli dakhlnah
-		// fix meee!!
 		TeacherService teacherService = new TeacherService();
-		Teacher tempTeacher = teacherService.getTeacher(t.getUsername());
+		Teacher teacher = teacherService.getTeacher(t.getUsername());
 			
-		if (tempTeacher != null) {
-			if (tempTeacher.getPassword().equals(t.getPassword())) {
-				return "/teacherHome";
+		if (teacher != null) {
+			if (teacher.getPassword().equals(t.getPassword())) {
+				return "redirect:/teacherHome/" + teacher.getUsername() + ".html";
 			}
 		}
-		return "/error";
+		return "/myerror";
 	}	
 		
 }
