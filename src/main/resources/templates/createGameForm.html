@@ -6,35 +6,18 @@
 	
 		<p>Name: <input type ="text" th:field ="*{name}" required  = "required"/></p>
 		
-		<p>Type: <input type ="text" th:field ="*{type}" required  = "required"/></p>
-				
-		 <div th:each="q , iterStat: questions">		
-   			<span th:text="${iterStat.index}"></span>
-		</div> 
+		<p>Type: <input type ="text" th:field ="*{type}" required  = "required"/></p>	
 		
-		<div th:each="q : ${questions}" th:object="${questions}">
-		<p>hello?? -_- </p>
-        	 <input type = "text" th:field="*{q.question}"></input>
-		</div>
-		
-		<!-- <p>Question 1: <input type ="text" th:field ="*{questions[0].question}" required  = "required"/></p>
-		
-		<p>Answer 1: <input type ="text" th:field ="*{questions[0].answers[0]}" required  = "required"/></p>
-		<p>Answer 2: <input type ="text" th:field ="*{questions[0].answers[1]}" required  = "required"/></p>
-		<p>Answer 3: <input type ="text" th:field ="*{questions[0].answers[2]}" required  = "required"/></p>
-		<p>Answer 4: <input type ="text" th:field ="*{questions[0].answers[3]}" required  = "required"/></p>
-		
-		<p>Question 2: <input type ="text" th:field ="*{questions[1].question}" required  = "required"/></p>
-		
-		<p>Answer 1: <input type ="text" th:field ="*{questions[1].answers[0]}" required  = "required"/></p>
-		<p>Answer 2: <input type ="text" th:field ="*{questions[1].answers[1]}" required  = "required"/></p>
-		<p>Answer 3: <input type ="text" th:field ="*{questions[1].answers[2]}" required  = "required"/></p>
-		<p>Answer 4: <input type ="text" th:field ="*{questions[1].answers[3]}" required  = "required"/></p>
-						 -->
-		<!-- <input type ="submit" /> -->
+		<input type ="submit" value ="next" />
 		
 	</form>
-	
+		
 </body>
 </html>
 
+
+
+
+		<!-- <div th:each="q : ${questions}" th:object="${questions}">
+        	 <input type = "text" th:field="*{q.question}"></input>
+		</div> -->

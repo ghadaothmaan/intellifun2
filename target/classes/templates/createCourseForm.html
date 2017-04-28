@@ -4,9 +4,9 @@
 
 	<form action ="#" th:action ="@{/createCourseForm}" th:object ="${course}" method ="post">
 	
-		<p>Name: <input type ="text" th:field ="*{name}" required  = ""/></p>
+		<p>Name: <input type ="text" th:field ="*{name}" required  = "required"/></p>
 		
-		<p>Description: <input type ="text" th:field ="*{description}" required = ""/></p>
+		<p>Description: <input type ="text" th:field ="*{description}" required = "required"/></p>
 				
 		<input type ="submit" />
 	</form>
