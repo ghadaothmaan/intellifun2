@@ -74,28 +74,26 @@ public class GameController {
 	
 	// play game stuff
 	@RequestMapping(value = "playGame/{id}", method = RequestMethod.GET)
-	public String play (@PathVariable int id, Model model, Model m) {
-		Game game = new Game();
-		Game usergame = new Game();
-		
+	public String play (@PathVariable int id, Model model) {
 		game = gameService.findGame(id);
+		System.out.println(game.getQuestions().size());
 		
 		System.out.println(game.getName());
+		System.out.println(game.getQuestions().get(0).getChoice1() + " fe eh");
 		
+		ArrayList<String> userAnswers = new ArrayList<>();
+		model.addAttribute("userAnswers", userAnswers);
 		model.addAttribute("game", game);
-		m.addAttribute("usergame", usergame);
-		
+
 		return "/playGame";
 	}
 	
 	@RequestMapping(value = "playGame/{id}", method = RequestMethod.POST)
-	public String getGame (@PathVariable int id, @ModelAttribute(value = "game") Game usergame, @ModelAttribute(value = "game") Game game) {		
-		
-		game = gameService.findGame(id);
-		//int score = gameService.checkAnswers(game, usergame);
+	public String getGame (@PathVariable int id, Model model, @ModelAttribute(value = "game") Game game) {		
 		
 		//System.out.println("hellooooo" + score); // doesnt get printed
-		
+		//int score = gameService.checkAnswers(game, usergame);
+
 		return "/myerror";
 		//return "redirect:/gameInfo/" + usergame.getId() + ".html";
 	}

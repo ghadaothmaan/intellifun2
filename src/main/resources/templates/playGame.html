@@ -6,16 +6,22 @@
 			
 		<p>Name: <span th:text ="${game.name}" ></span></p>
 		
-		<p>Question 1: <span th:text ="${game.questions[0]}" ></span></p>
-				
-		<p>Answer 1: <input type ="text" th:field ="*{game.answers[0]}" required = "required"/></p>
+		<div th:each = "question, iterStat : ${game.questions}">
+<!-- 				<p>Question 1: <span th:text ="${question.questionhead}" ></span></p>
+ -->				<p>A: <span th:text ="${question.choice1}" ></span></p>
+				<p>B: <span th:text ="${question.choice2}" ></span></p>
+				<p>C: <span th:text ="${question.choice3}" ></span></p>
+				<p>D: <span th:text ="${question.choice4}" ></span></p>
+		</div>
+		<!-- <p>Answer 1: <input type ="text" th:field ="*{userAnswers[0]}" required = "required"/></p>
 		
 		<p>Question 2: <span th:text ="${game.questions[1]}" ></span></p>
 		
 		<p>Answer 2: <input type ="text" th:field ="*{game.answers[1]}" required = "required"/></p>
-				
+		 -->		
 		<input type ="submit" />
 	</form> 
 	
 </body>
 </html>
+
