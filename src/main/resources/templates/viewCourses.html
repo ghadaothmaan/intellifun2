@@ -1,30 +1,31 @@
 <!DOCTYPE html>
-<html xmlns:th ="http//www.thymeleaf.org">
+<html xmlns:th="http//www.thymeleaf.org">
 <head>
-	 <!-- Bootstrap Core CSS -->
-    <link th:href = "@{css/bootstrap.min.css}" href="css/bootstrap.min.css" rel="stylesheet"/>
+<!-- Bootstrap Core CSS -->
+<link th:href="@{css/bootstrap.min.css}" href="css/bootstrap.min.css"
+	rel="stylesheet" />
 
-    <!-- Custom CSS -->
-    <link th:href = "@{css/formstyle.css}" href="css/formstyle.css" rel="stylesheet"/>
+<!-- Custom CSS -->
+<link th:href="@{css/formstyle.css}" href="css/formstyle.css"
+	rel="stylesheet" />
 
 </head>
 
 <body>
-	<div class = "container">
-	<div id = "contact">
-	
-	<h2>Courses</h2>
-	 	
-	<div th:each="course : ${courses}" th:object="${courses}">
-    	<form th:action="@{'/course/' + ${course.id}}">
-    		<button name="submit" id = "contact-submit" th:text="${course.name}" type="submit"></button>
-    	</form>
+	<div class="container">
+		<div id="contact">
+
+			<h2>Courses</h2>
+
+			<div th:each="course : ${courses}" th:object="${courses}">
+				<form th:action="@{'/course/' + ${course.id}}">
+					<button name="submit" id="contact-submit" th:text="${course.name}"
+						type="submit"></button>
+				</form>
+			</div>
+		</div>
 	</div>
-	
-	<p><a href="createCourseForm"><button name="submit" type="submit" id = "contact-submit">Create Course</button></a></p>
-	</div>
-	</div>
-	
-	
+
+
 </body>
 </html>

@@ -1,16 +1,42 @@
 <!DOCTYPE html>
-<html xmlns:th ="http//www.thymeleaf.org">
+<html xmlns:th="http//www.thymeleaf.org">
 <head>
-	<!-- we didnt style it yet! -->
-	<!-- <link href ="@{/CSS/style.css}" rel ="stylesheet" type ="text/css"/> -->
+<!-- Bootstrap Core CSS -->
+<link th:href="@{css/bootstrap.min.css}" href="css/bootstrap.min.css"
+	rel="stylesheet" />
+
+<!-- Custom CSS -->
+<link th:href="@{css/formstyle.css}" href="css/formstyle.css"
+	rel="stylesheet" />
+
 </head>
 <body>
-	<h2>Teacher home</h2>
-	
-	<p><a th:href="@{'../teacherProfile/' + ${teacher.username}}"><button>view profile</button></a></p>
-	
-	<p><a href="../viewCourses"><button>view courses</button></a></p>
-	
+	<div class="container">
+		<div id="contact">
+			<h2>Teacher home</h2>
+
+			<p>
+				<a th:href="@{'../teacherProfile/' + ${teacher.username}}"><button
+						name="submit" type="submit" id="contact-submit">View
+						Profile</button></a>
+			</p>
+
+			<p>
+				<a href="../viewCourses"><button name="submit" type="submit"
+						id="contact-submit">View Courses</button></a>
+			</p>
+			<p>
+				<a href="createCourseForm"><button name="submit" type="submit"
+						id="contact-submit">Create Course</button></a>
+			</p>
+			<p>
+				<a href="../createGameForm"><button name="submit" type="submit"
+						id="contact-submit">Create Game</button></a>
+			</p>
+
+		</div>
+	</div>
+
 </body>
 </html>
 
