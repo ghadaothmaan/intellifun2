@@ -31,16 +31,19 @@ public class UserController {
 	public String showHome (@ModelAttribute(value = "user") User t) {
 		
 		int usertype = us.getUserType(t);
-		User u = us.getLoggedin();
+		System.out.println(usertype);
+		//User u = us.getLoggedin();
 		
-		System.out.println("da el logged in: " + u.getUsername());
+		//System.out.println("da el logged in: " + u.getUsername());
 		
 		if (usertype == 0) return "/myerror";
 		else if (usertype == 1) {
+			User u = us.getTeacher(t);
 			if (t.getPassword().equals(u.getPassword()))
 				return "redirect:/teacherHome";		
 		}
 		else if (usertype == 2) {
+			User u = us.getStudent(t);
 			if (t.getPassword().equals(u.getPassword())) {
 				System.out.println("wda el pw bta3o: " + t.getPassword());
 				return "redirect:/studentHome";

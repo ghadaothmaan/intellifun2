@@ -17,12 +17,19 @@ public class UserService {
 			type = 2;
 		}
 		else type = 0;
-		System.out.println(ss.getLoggedin().getUsername() + " uff bgd");
+		//System.out.println(ss.getLoggedin().getUsername() + " uff bgd");
 		return type;
 	}
 	public User getLoggedin() {
 		if (ts.getLoggedin() != null) return ts.getLoggedin();
 		else return ss.getLoggedin();
+	}
+	
+	public Teacher getTeacher(User user) {
+		return ts.getTeacher(user.getUsername());
+	}
+	public Student getStudent(User user) {
+		return ss.getStudent(user.getUsername());
 	}
 	
 	public Student getLoggedinStudent() {

@@ -1,15 +1,31 @@
 <!DOCTYPE html>
 <html xmlns:th="http//www.thymeleaf.org">
+
+<head>
+	 <!-- Bootstrap Core CSS -->
+    <link th:href = "@{css/bootstrap.min.css}" href="css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    <link th:href = "@{css/formstyle.css}" href="css/formstyle.css" rel="stylesheet"/>	
+
+</head>
+
 <body>
 
-	<form action ="#" th:action ="@{/createCourseForm}" th:object ="${course}" method ="post">
-	
+	<div class = "container">
+	<form id = "contact" action ="#" th:action ="@{/createCourseForm}" th:object ="${course}" method ="post">
+		<h3>Create Course</h3>
+		<fieldset>
 		<p>Name: <input type ="text" th:field ="*{name}" required  = "required"/></p>
-		
+		</fieldset>
+		<fieldset>
 		<p>Description: <input type ="text" th:field ="*{description}" required = "required"/></p>
-				
-		<input type ="submit" />
+		</fieldset>	
+		<fieldset>
+		<button name = "submit" type ="submit" id = "contact-submit" data-submit="Sending...">Submit </button>
+		</fieldset>
 	</form>
+	</div>
 	
 </body>
 </html>

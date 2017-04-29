@@ -1,31 +1,41 @@
 <!DOCTYPE html>
 <html xmlns:th ="http//www.thymeleaf.org">
 <head>
-	<!-- we didnt style it yet! -->
-	<!-- <link href ="@{/CSS/style.css}" rel ="stylesheet" type ="text/css"/> -->
+	 <!-- Bootstrap Core CSS -->
+    <link th:href = "@{css/bootstrap.min.css}" href="css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    <link th:href = "@{css/formstyle.css}" href="css/formstyle.css" rel="stylesheet"/>
+
 </head>
 <body>
-	<h2>Course Information</h2>
-	<table>
-		<tr>
-			<th>Name: </th>
-			<td><span th:text ="${course.name}" ></span></td>
-		</tr>
-		<tr>
-			<th>Description: </th>
-			<td><span th:text ="${course.description}" ></span></td>
-		</tr>		
-	</table>
-	
-	<div th:each="game : ${games}" th:object="${course.games}">
-    	<form th:action="@{/}">
-        	<button th:text="${game.name}" type="submit"></button>
-    	</form>
+	<div class = "container">
+	<div id = "contact">
+		<h2>Course Information</h2>
+		<table>
+			<tr>
+				<th>Name: </th>
+				<td><span th:text ="${course.name}" ></span></td>				
+			</tr>
+			
+			<tr>
+				<th>Description: </th>
+				<td><span th:text ="${course.description}" ></span></td>
+			</tr>		
+		</table>
+		
+		<div id = "contact" th:each="game : ${games}" th:object="${course.games}">
+	    	<form th:action="@{/}">
+	        	<button name="submit" id = "contact-submit" th:text="${game.name}" type="submit"></button>
+	    	</form>	    	
+		</div>
+			<p><a href="../createGameForm"><button name="submit" type="submit" id = "contact-submit">Create Game</button></a></p>
+		</div>
 	</div>
 	
 	
-	<p><a href="../createGameForm"><button>create game</button></a></p>
-	
 </body>
 </html>
+
+
 

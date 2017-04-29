@@ -1,26 +1,42 @@
 <!DOCTYPE html>
 <html xmlns:th="http//www.thymeleaf.org">
+<head>
+	 <!-- Bootstrap Core CSS -->
+    <link th:href = "@{css/bootstrap.min.css}" href="css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    <link th:href = "@{css/formstyle.css}" href="css/formstyle.css" rel="stylesheet"/>
+
+</head>
 <body>
-
-	<form action ="#" th:action ="@{/teacherForm}" th:object ="${teacher}" method ="post">
-	
-		<p>Name: <input type ="text" th:field ="*{name}" required  = "required"/></p>
-		
-		<p>Username: <input type ="text" th:field ="*{username}" required = "required"/></p>
-		
-		<p>Gender: 
-			<input type = "radio" th:field ="*{gender}" value = "female" required = "required"/>Female
-			<input type = "radio" th:field ="*{gender}" value = "male" required = "required"/>Male
-		</p>
-		
-		<p>Email: <input type ="email" th:field ="*{email}" placeholder = "example@example.com" required ="required"/></p>
-		
-		<p>Password: <input type ="password" th:field ="*{password}" required ="required"/></p>
-		
-		<p>Photo: <input type ="text" th:field ="*{pic}" required ="required"/></p>
-
-		<input type ="submit" />
-	</form>
-	
+	<div class = "container">
+		<form id = "contact" action ="#" th:action ="@{/teacherForm}" th:object ="${teacher}" method ="post">
+		<h3>Teacher Registration</h3>
+			<fieldset>
+			<p>Name: <input type ="text" th:field ="*{name}" required  = "required"/></p>
+			</fieldset>
+			<fieldset>
+			<p>Username: <input type ="text" th:field ="*{username}" required = "required"/></p>
+			</fieldset>
+			<fieldset>
+			<p>Gender: 
+				<input type = "radio" th:field ="*{gender}" value = "female" required = "required"/>Female
+				<input type = "radio" th:field ="*{gender}" value = "male" required = "required"/>Male
+			</p>
+			</fieldset>
+			<fieldset>
+			<p>Email: <input type ="email" th:field ="*{email}" placeholder = "example@example.com" required ="required"/></p>
+			</fieldset>
+			<fieldset>
+			<p>Password: <input type ="password" th:field ="*{password}" required ="required"/></p>
+			</fieldset>
+			<fieldset>
+			<p>Photo: <input type ="text" th:field ="*{pic}" required ="required"/></p>
+			</fieldset>
+			<fieldset>
+				<button name = "submit" type ="submit" id = "contact-submit" data-submit="Sending...">Submit </button>
+			</fieldset>
+		</form>
+	</div>
 </body>
 </html>

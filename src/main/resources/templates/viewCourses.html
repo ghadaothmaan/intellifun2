@@ -1,24 +1,29 @@
 <!DOCTYPE html>
 <html xmlns:th ="http//www.thymeleaf.org">
 <head>
-	<!-- we didnt style it yet! -->
-	<!-- <link href ="@{/CSS/style.css}" rel ="stylesheet" type ="text/css"/> -->
+	 <!-- Bootstrap Core CSS -->
+    <link th:href = "@{css/bootstrap.min.css}" href="css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    <link th:href = "@{css/formstyle.css}" href="css/formstyle.css" rel="stylesheet"/>
+
 </head>
+
 <body>
+	<div class = "container">
+	<div id = "contact">
 	
 	<h2>Courses</h2>
-	<p>choose a course, it should show course info including a list of games,
-	   then choose a game to play, rate or comment</p>
-	
-    <!-- <p th:each="course : ${courses}" th:text="${course.name}"></p> -->
- 	
+	 	
 	<div th:each="course : ${courses}" th:object="${courses}">
     	<form th:action="@{'/course/' + ${course.id}}">
-    	<button th:text="${course.name}" type="submit"></button>
+    		<button name="submit" id = "contact-submit" th:text="${course.name}" type="submit"></button>
     	</form>
 	</div>
 	
-	<p><a href="createCourseForm"><button>create course</button></a></p>
+	<p><a href="createCourseForm"><button name="submit" type="submit" id = "contact-submit">Create Course</button></a></p>
+	</div>
+	</div>
 	
 	
 </body>

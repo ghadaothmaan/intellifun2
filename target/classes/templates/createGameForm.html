@@ -1,17 +1,31 @@
 <!DOCTYPE html>
 <html xmlns:th="http//www.thymeleaf.org">
-<body>
+<head>
+	 <!-- Bootstrap Core CSS -->
+    <link th:href = "@{css/bootstrap.min.css}" href="css/bootstrap.min.css" rel="stylesheet"/>
 
-	 <form action ="#" th:action ="@{/createGameForm}" th:object ="${game}" method ="post">
+    <!-- Custom CSS -->
+    <link th:href = "@{css/formstyle.css}" href="css/formstyle.css" rel="stylesheet"/>
 	
-		<p>Name: <input type ="text" th:field ="*{name}" required  = "required"/></p>
-		
-		<p>Type: <input type ="text" th:field ="*{type}" required  = "required"/></p>	
-		
-		<input type ="submit" value ="next" />
+
+</head>
+<body>
+	<div class = "container">
+
+	 <form id = "contact" action ="#" th:action ="@{/createGameForm}" th:object ="${game}" method ="post">
+	<h3>Create Game</h3>
+		<fieldset>
+			<p>Name: <input type ="text" th:field ="*{name}" required  = "required"/></p>
+		</fieldset>
+		<fieldset>
+			<p>Type: <input type ="text" th:field ="*{type}" required  = "required"/></p>	
+		</fieldset>
+		<fieldset>
+			<button name = "submit" type ="submit" id = "contact-submit" data-submit="Sending...">Submit </button>
+		</fieldset>
 		
 	</form> 
-	
+	</div>
 		
 </body>
 </html>

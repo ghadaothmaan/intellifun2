@@ -1,23 +1,48 @@
 <!DOCTYPE html>
 <html xmlns:th="http//www.thymeleaf.org">
+
+<head>
+	 <!-- Bootstrap Core CSS -->
+    <link th:href = "@{css/bootstrap.min.css}" href="css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    <link th:href = "@{css/formstyle.css}" href="css/formstyle.css" rel="stylesheet"/>
+	
+
+</head>
+
 <body>
-
-	<form th:object ="${question}" method ="get">
-
-		<p>Question: <input type ="text" th:field ="*{questionhead}" required = "required"/></p>
-
- 		<p>Answer 1: <input type ="text" th:field ="*{choice1}" required ="required"/></p>
-		<p>Answer 2: <input type ="text" th:field ="*{choice2}" required ="required"/></p>
-		<p>Answer 3: <input type ="text" th:field ="*{choice3}" required ="required"/></p>
-		<p>Answer 4: <input type ="text" th:field ="*{choice4}" required ="required"/></p>
-		 		
-		<p>Correct Answer: <input type = "text" th:field = "*{correctAnswer}" required = "required"/></p>
-		
-		
-		<button type = "submit" th:formaction = "@{'/newQuestion/' + ${game.id}}" value = "next">next</button>
-		<button type = "submit" th:formaction="@{'/gameInf/' + ${game.id}}" value = "finish">finish</button>
+	<div class = "container">
+	<form id = "contact" th:object ="${question}" method ="get">
+		<h3>New Question</h3>
+		<fieldset>
+			<p>Question: <input type ="text" th:field ="*{questionhead}" required = "required"/></p>
+		</fieldset>
+		<fieldset>
+ 			<p>Answer 1: <input type ="text" th:field ="*{choice1}" required ="required"/></p>
+		</fieldset>
+		<fieldset>
+			<p>Answer 2: <input type ="text" th:field ="*{choice2}" required ="required"/></p>
+		</fieldset>
+		<fieldset>
+			<p>Answer 3: <input type ="text" th:field ="*{choice3}" required ="required"/></p>
+		</fieldset>
+		<fieldset>
+			<p>Answer 4: <input type ="text" th:field ="*{choice4}" required ="required"/></p>
+		</fieldset>		
+		<fieldset>
+			<p>Correct Answer: <input type = "text" th:field = "*{correctAnswer}" required = "required"/></p>
+		</fieldset>
+		<fieldset>
+			<button name = "submit" type ="submit" id = "contact-submit"  th:formaction = "@{'/newQuestion/' + ${game.id}}" value = "next">Next</button>
+		</fieldset>
+		<fieldset>
+			<button name = "submit" type ="submit" id = "contact-submit"  th:formaction="@{'/gameInf/' + ${game.id}}" value = "finish">Finish</button>
+		</fieldset>
 		
 	</form>
+	</div>
 	
 </body>
 </html>
+
