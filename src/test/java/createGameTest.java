@@ -1,5 +1,4 @@
 
-
 import java.util.regex.Pattern;
 import java.util.concurrent.TimeUnit;
 import org.testng.annotations.*;
@@ -8,7 +7,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 
-public class createCourseTest {
+public class createGameTest {
   private WebDriver driver;
   private String baseUrl;
   private boolean acceptNextAlert = true;
@@ -22,7 +21,7 @@ public class createCourseTest {
   }
 
   @Test
-  public void testCreateCourse() throws Exception {
+  public void testCreateGame() throws Exception {
     driver.get(baseUrl + "/home");
     driver.findElement(By.linkText("login")).click();
     driver.findElement(By.id("name")).clear();
@@ -31,12 +30,37 @@ public class createCourseTest {
     driver.findElement(By.id("password")).sendKeys("123");
     driver.findElement(By.cssSelector("input[type=\"submit\"]")).click();
     driver.findElement(By.xpath("//p[2]/a/button")).click();
+    driver.findElement(By.cssSelector("button[type=\"submit\"]")).click();
     driver.findElement(By.cssSelector("a > button")).click();
-    driver.findElement(By.id("name")).clear();
-    driver.findElement(By.id("name")).sendKeys("Science");
-    driver.findElement(By.id("description")).clear();
-    driver.findElement(By.id("description")).sendKeys("science games");
+    driver.findElement(By.id("type")).clear();
+    driver.findElement(By.id("type")).sendKeys("Math");
     driver.findElement(By.cssSelector("input[type=\"submit\"]")).click();
+    driver.findElement(By.id("questionhead")).clear();
+    driver.findElement(By.id("questionhead")).sendKeys("1+1 =");
+    driver.findElement(By.id("questionhead")).clear();
+    driver.findElement(By.id("questionhead")).sendKeys("1+1 = ?");
+    driver.findElement(By.id("choice1")).clear();
+    driver.findElement(By.id("choice1")).sendKeys("2");
+    driver.findElement(By.id("choice2")).clear();
+    driver.findElement(By.id("choice2")).sendKeys("11");
+    driver.findElement(By.id("choice3")).clear();
+    driver.findElement(By.id("choice3")).sendKeys("1");
+    driver.findElement(By.id("choice4")).clear();
+    driver.findElement(By.id("choice4")).sendKeys("10");
+    driver.findElement(By.id("correctAnswer")).clear();
+    driver.findElement(By.id("correctAnswer")).sendKeys("2");
+    driver.findElement(By.cssSelector("button[type=\"submit\"]")).click();
+    driver.findElement(By.id("questionhead")).clear();
+    driver.findElement(By.id("questionhead")).sendKeys("1 * 1 = ?");
+    driver.findElement(By.id("choice1")).clear();
+    driver.findElement(By.id("choice1")).sendKeys("1");
+    driver.findElement(By.id("choice2")).clear();
+    driver.findElement(By.id("choice2")).sendKeys("2");
+    driver.findElement(By.id("choice1")).clear();
+    driver.findElement(By.id("choice1")).sendKeys("11");
+    driver.findElement(By.id("correctAnswer")).clear();
+    driver.findElement(By.id("correctAnswer")).sendKeys("1");
+    driver.findElement(By.xpath("//button[@value='finish']")).click();
   }
 
   @AfterClass(alwaysRun = true)
