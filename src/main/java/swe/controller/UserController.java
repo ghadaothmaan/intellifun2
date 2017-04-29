@@ -2,7 +2,9 @@ package swe.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -66,5 +68,59 @@ public class UserController {
 		
 		return "/teacherHome";
 	}
+	
+	// student signup
+	@RequestMapping(value = "studentForm", method = RequestMethod.GET)
+	public String registerStudent (Model model) {
+		Student student = new Student();
+		model.addAttribute("student", student);
+		return "/studentForm";
+	}
+	
+	@RequestMapping(value = "studentForm", method = RequestMethod.POST)
+	public String showStudentHome (@ModelAttribute(value = "student") Student s) {		
+		Student student = new Student(s.getName(), s.getUsername(), s.getGender(),
+									s.getEmail(), s.getPassword(), s.getPic(), 0);
+		
+		us.ss.addStudent(student); // adding signed up user to our awesome static database
+		
+		return "/studentProfileSignup";
+	}
+
+	@RequestMapping(value = "studentProfile/{username}" , method = RequestMethod.GET)
+	public String studentProfilee (@PathVariable String username, ModelMap modelMap ) {		
+		Student student = us.ss.getStudent(username);
+		modelMap.put("student", student);
+		
+		return "/studentProfile";
+	}
+	
+	// teacher signup
+	@RequestMapping(value = "teacherForm", method = RequestMethod.GET)
+	public String registerTeacher (Model model) {
+		Teacher teacher = new Teacher();
+		model.addAttribute("teacher", teacher);
+		return "/teacherForm";
+	}
+		
+	@RequestMapping(value = "teacherForm", method = RequestMethod.POST)
+	public String showTeacherHome (@ModelAttribute(value = "student") Teacher s) {		
+		Teacher teacher = new Teacher(s.getName(), s.getUsername(), s.getGender(),
+									s.getEmail(), s.getPassword(), s.getPic());
+		
+		us.ts.addTeacher(teacher); // adding signed up user to our awesome static database
+		
+		return "/teacherProfileSignup";
+	}
+	
+	@RequestMapping(value = "teacherProfile/{username}" , method = RequestMethod.GET)
+	public String teacherProfile (@PathVariable String username, ModelMap modelMap ) {		
+		Teacher teacher = us.ts.getTeacher(username);
+		modelMap.put("teacher", teacher);
+		
+		return "/teacherProfile";
+	}
+	
+	
 
 }
