@@ -28,9 +28,9 @@ public class Game {
 		this.name = "";
 		this.type = "";
 		this.questions = new ArrayList<QuestionMCQ>(3);
-		for (int i = 0; i < 3; i++) {
-			questions.add(null);
-		}
+//		for (int i = 0; i < 3; i++) {
+//			questions.add(null);
+//		}
 	}
 	
 	public int getId() {

@@ -2,7 +2,7 @@
 <html xmlns:th="http//www.thymeleaf.org">
 <body>
 
-	<form action ="#" th:action ="@{/newQuestion}" th:object ="${question}" method ="get">
+	<form th:object ="${question}" method ="get">
 
 		<p>Question: <input type ="text" th:field ="*{questionhead}" required = "required"/></p>
 
@@ -13,8 +13,9 @@
 		 		
 		<p>Correct Answer: <input type = "text" th:field = "*{correctAnswer}" required = "required"/></p>
 		
-		<button th:action="@{/newQuestion}" value = "next">next</button>
-		<button th:action="@{/gameInfo}" value = "finish">finish</button>
+		
+		<button type = "submit" th:formaction = "@{'/newQuestion/' + ${game.id}}" value = "next">next</button>
+		<button type = "submit" th:formaction="@{'/gameInf/' + ${game.id}}" value = "finish">finish</button>
 		
 	</form>
 	
