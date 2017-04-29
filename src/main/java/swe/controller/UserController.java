@@ -20,7 +20,7 @@ public class UserController {
 	UserService us = new UserService();
 	
 	@RequestMapping(value = "login", method = RequestMethod.GET)
-	public String yallalogin (Model model) {
+	public String login (Model model) {
 		System.out.println("hello");
 		User user = new User();
 		model.addAttribute("user", user);
@@ -88,7 +88,7 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "studentProfile/{username}" , method = RequestMethod.GET)
-	public String studentProfilee (@PathVariable String username, ModelMap modelMap ) {		
+	public String studentProfile (@PathVariable String username, ModelMap modelMap ) {		
 		Student student = us.ss.getStudent(username);
 		modelMap.put("student", student);
 		

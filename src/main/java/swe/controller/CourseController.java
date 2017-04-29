@@ -18,21 +18,21 @@ import swe.service.CourseService;
 public class CourseController {
 	
 //	  @Autowired
-//    private CourseService courseservice;
+	CourseService courseService = new CourseService();
 //    @Autowired
 //    private GameService gameService;
 	
 	// create course stuff
 	@RequestMapping(value = "createCourseForm", method = RequestMethod.GET)
-	public String create (Model model) {
+	public String createCourse (Model model) {
 		Course course = new Course();
 		model.addAttribute("course", course);
 		return "/createCourseForm";
 	}
 		
 	@RequestMapping(value = "createCourseForm", method = RequestMethod.POST)
-	public String createGame (@ModelAttribute(value = "course") Course c) {		
-		CourseService courseService = new CourseService();
+	public String createCourse (@ModelAttribute(value = "course") Course c) {		
+		
 		courseService.createCourse(c.getName(), c.getDescription()); 
 		return "/courseInfo";
 	}
@@ -40,15 +40,13 @@ public class CourseController {
 	// view courses
 	@RequestMapping(value = "viewCourses", method = RequestMethod.GET)
 	public String viewCourses (Model model) {
-		CourseService courseService = new CourseService();
 		ArrayList<Course> courses = courseService.viewCourses();
 		model.addAttribute("courses", courses);
 		return "/viewCourses";
 	}
 	
 	@RequestMapping(value = "course/{id}")
-    public String showCourse(@PathVariable int id, Model model) {
-		CourseService courseService = new CourseService();
+    public String showCourse (@PathVariable int id, Model model) {
 		Course course = courseService.getCourse(id);
         ArrayList<Game> games = course.getGames();
         model.addAttribute("course", course);

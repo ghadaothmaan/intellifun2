@@ -31,7 +31,7 @@ public class GameController {
 	}
 	
 	@RequestMapping(value = "createGameForm", method = RequestMethod.POST)
-	public String createPost (@ModelAttribute(value = "game") Game game, Model model) {
+	public String createGame (@ModelAttribute(value = "game") Game game, Model model) {
 	//	model.addAttribute("game", game);
 		System.out.println(game.getName() + " hmm");
 		gameService.addGame(game);
@@ -39,7 +39,7 @@ public class GameController {
 	}
 	
 	@RequestMapping(value = "newQuestion/{id}", method = RequestMethod.GET)
-	public String createq(Model model, @PathVariable int id, @ModelAttribute(value = "question") QuestionMCQ question) {
+	public String createGame (Model model, @PathVariable int id, @ModelAttribute(value = "question") QuestionMCQ question) {
 		
 		//QuestionMCQ question = new QuestionMCQ();
 		game = gameService.findGame(id);
@@ -62,7 +62,7 @@ public class GameController {
 	}
 	
 	@RequestMapping(value = "gameInf/{id}")
-	public String createGameq (Model model, @PathVariable int id) {		
+	public String gameInfo (Model model, @PathVariable int id) {		
 		game = gameService.findGame(id);
 		model.addAttribute("game", game);
 		System.out.println(game.getName());
@@ -71,7 +71,6 @@ public class GameController {
 		return "/gameInfo";
 	}
 		
-
 	
 	// play game stuff
 	@RequestMapping(value = "playGame/{id}", method = RequestMethod.GET)
